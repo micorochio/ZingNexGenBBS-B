@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.zing.account.dao.LoginAndSignUpDAO">
+
+    <insert id="createAnUser" parameterType="com.zing.account.entity.UserProfile">
+        INSERT IGNORE INTO cmc_user_profile (
+        nickname,
+        email,
+        point,
+        balance_point,
+        create_date,
+        update_time,
+        account_state
+        )VALUES (
+        #{nickname},
+        #{email},
+        0,
+        0,
+        now(),
+        now(),
+        '未激活'
+        );
+    </insert>
+
+    <select id="findUserByEmail" resultType="UserProfile">
+        SELECT
+        A.usid,
+        A.nickname,
+        A.email,
+        A.point,
+        A.balance_point,
+        A.create_date,
+        A.update_time
+        FROM cmc_user_profile A
+        WHERE A.email =#{email} ;
+    </select>
+
+    <select id="findUserById">
+        SELECT
+        A.usid,
+        A.nickname,
+        A.email,
+        A.point,
+        A.balance_point,
+        A.create_date,
+        A.update_time
+        FROM cmc_user_profile A
+        WHERE A.usid =#{userid} ;
+    </select>
+
+    <insert id="createAnSignAccount" parameterType="com.zing.account.entity.SignIn">
+        <selectKey keyProperty="usid" order="BEFORE" resultType="int">
+            SELECT usid  FROM cmc_user_profile WHERE email = #{loginEmail};
+        </selectKey>
+        INSERT IGNORE INTO cmc_login_oauth(
+        usid,
+        login_email,
+        oauth_from,
+        oauth_id,
+        oauth_password,
+        last_login_ip,
+        create_date,
+        update_time,
+        login_state,
+        account_abnormal_start_time,
+        freeze_end_time,
+        salt,
+        reserved_field2
+        )VALUES (
+        #{usid},
+        #{loginEmail},
+        NULL,
+        NULL,
+        #{oauthPassword},
+        #{lastLoginIp},
+        now(),
+        now(),
+        '正常',
+        NULL,
+        NULL,
+        #{salt},
+        NULL
+        );
+    </insert>
+
+    <select id="signIn" parameterType="com.zing.account.entity.SignIn">
+        SELECT
+        usid,
+        login_email,
+        oauth_from,
+        oauth_id,
+        oauth_password,
+        last_login_ip,
+        create_date,
+        update_time,
+        login_state,
+        account_abnormal_start_time,
+        freeze_end_time,
+        salt,
+        reserved_field2
+        FROM cmc_login_oauth
+        WHERE login_email = #{loginEmail}
+    </select>
+
+    <select id="isEmailAlreadyExists">
+        SELECT count(0)
+        FROM cmc_login_oauth
+        WHERE login_email=#{email};
+    </select>
+</mapper>

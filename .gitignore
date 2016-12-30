@@ -28,4 +28,5 @@ Thumbs.db
 src/Test
 src/Test/*
 
-
+# 防止泄露数据库密码 #
+jdbc.properties
