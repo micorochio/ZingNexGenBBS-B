@@ -89,3 +89,25 @@ CREATE TABLE `cmc_user_profile` (
   COMMENT '用户信息';
 
 
+
+CREATE TABLE cmc_invite_info (
+  `invite_id`     BIGINT      NOT NULL AUTO_INCREMENT
+  COMMENT 'ID',
+  `invite_host`   VARCHAR(64) NOT NULL DEFAULT '官方'
+  COMMENT '发起邀请者',
+  `invite_guest`  VARCHAR(64)          DEFAULT '开放性邀请任何人'
+  COMMENT '接收邀请者',
+  `invite_code`   VARCHAR(64) NOT NULL
+  COMMENT '邀请码',
+  `invite_result` VARCHAR(8)  NOT NULL DEFAULT '等待'
+  COMMENT '邀请状态，等待，完成，过期',
+  `startTime`     DATETIME    NOT NULL
+  COMMENT '发起时间',
+  `updateTime`    DATETIME    NOT NULL
+  COMMENT '更新时间',
+  PRIMARY KEY (invite_id)
+)
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 1000
+  DEFAULT CHARSET = utf8
+  COMMENT '邀请注册表';
