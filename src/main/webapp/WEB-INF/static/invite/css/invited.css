@@ -1,0 +1,41 @@
+body {
+  background: #2789FA;
+}
+body .form-box {
+  margin-top: 180px;
+}
+body .form-box .chapter {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+body .form-box .chapter .chapter-img {
+  margin-top: 5px;
+  padding: 1px;
+  height: 36px;
+}
+body .form-box .sign-btn {
+  background: #1abc9c;
+  border: none;
+  border-radius: 20px;
+}
+body .form-box .sign-btn :hover,
+body .form-box .sign-btn :focus,
+body .form-box .sign-btn :active {
+  background: #179C82;
+  border: 1px solid #1abc9c;
+}
+body .form-box .go-login {
+  color: white;
+  font-size: 12px;
+  margin-top: 12px;
+}
+body .copyright {
+  width: 100%;
+  color: #bbbbbb;
+  text-align: center;
+  font-size: 12px;
+  position: absolute;
+  bottom: 40px;
+}

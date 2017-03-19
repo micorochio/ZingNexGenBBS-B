@@ -6,5 +6,58 @@
 
 <mapper namespace="com.zing.account.dao.SignAndLoginDao">
 
+    <select id="getInviteInfoByInviteCode" resultType="com.zing.account.entity.InviteTable" parameterType="String">
+      SELECT
+          A.invite_id,
+          A.invite_host,
+          A.invite_guest,
+          A.invite_code,
+          A.invite_result,
+          A.start_time
+      FROM cmc_invite_info A
+      WHERE A.invite_code = #{inviteCode} AND invite_result = '等待';
+    </select>
+
+    <select id="findUserByNameAndPasscode" resultType="com.zing.account.entity.valueObj.UserInfo">
+        SELECT
+          A.usid                        AS `security.usid`,
+          A.login_name                  AS `security.loginName`,
+          A.oauth_from                  AS `security.oauthFrom`,
+          A.oauth_id                    AS `security.oauthId`,
+          A.oauth_password              AS `security.oauthPassword`,
+          A.last_login_ip               AS `security.lastLoginIp`,
+          A.create_date                 AS `security.reateDate`,
+          A.update_time                 AS `security.pdateTime`,
+          A.login_state                 AS `security.loginState`,
+          A.account_abnormal_start_time AS `security.ccountAbnormalStartTime`,
+          A.freeze_end_time             AS `security.reezeEndTime`,
+          A.salt                        AS `security.salt`,
+          B.nickname                    AS `profile.nickname`,
+          B.real_name                   AS `profile.realName`,
+          B.birthday                    AS `profile.birthday`,
+          B.user_introduction           AS `profile.userIntroduction`,
+          B.sex                         AS `profile.sex`,
+          B.phone_no                    AS `profile.phoneNo`,
+          B.email                       AS `profile.email`,
+          B.bound_email                 AS `profile.boundEmail`,
+          B.qq                          AS `profile.qq`,
+          B.weibo                       AS `profile.weibo`,
+          B.wechat                      AS `profile.wechat`,
+          B.bound_phone                 AS `profile.boundPhone`,
+          B.bound_phone_time            AS `profile.boundPhoneTime `,
+          B.head_img                    AS `profile.headImg`,
+          B.address                     AS `profile.address`,
+          B.point                       AS `profile.point`,
+          B.balance_point               AS `profile.balancePoint`,
+          B.person_home                 AS `profile.personHome`,
+          B.create_date                 AS `profile.createDate`,
+          B.update_time                 AS `profile.updateTime`,
+          B.account_state               AS `profile.accountState`
+
+        FROM cmc_login_oauth A
+          JOIN cmc_user_profile B ON A.usid = B.usid
+        WHERE A.login_name = #{accountPhone} AND A.oauth_password = #{passcode};
+    </select>
+
 
 </mapper>

@@ -30,4 +30,4 @@ src/Test/*
 
 # 防止泄露数据库密码 #
 jdbc.properties
-/src/main/resources/static_page/
+/src/main/resources/static_page/*

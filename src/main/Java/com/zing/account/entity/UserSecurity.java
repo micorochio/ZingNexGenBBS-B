@@ -7,7 +7,7 @@ import java.util.Date;
  */
 public class UserSecurity {
     private String usid;                        // '用户ID'
-    private String loginEmail;                  // '用户邮箱'
+    private String loginName;                  // '用户名称'
     private String oauthFrom;                   // '授权来源'
     private String oauthId;                     // '授权号'
     private String oauthPassword;               // '授权秘钥'
@@ -28,12 +28,12 @@ public class UserSecurity {
         this.usid = usid;
     }
 
-    public String getLoginEmail() {
-        return loginEmail;
+    public String getLoginName() {
+        return loginName;
     }
 
-    public void setLoginEmail(String loginEmail) {
-        this.loginEmail = loginEmail;
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
     }
 
     public String getOauthFrom() {

@@ -1,0 +1,81 @@
+@charset "UTF-8";
+.up-box {
+    width: 100%;
+    min-height: 500px;
+    margin: auto;
+    background: #2789FA;
+}
+
+.up-box .container {
+    padding-top: 100px;
+    height: 420px;
+}
+
+.up-box .container .chapter {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.up-box .container .chapter .chapter-img {
+    margin-top: 7px;
+    padding: 1px 0px;
+    height: 38px;
+}
+
+.up-box .container .change-to-login {
+    padding: 5px 15px;
+    margin-top: 10px;
+    font-size: 0.8rem;
+}
+
+.up-box .container .remind-toast {
+    height: 50px;
+    font-size: 0.7rem;
+    overflow: hidden;
+}
+
+.up-box .container .remind-toast p {
+    word-break: keep-all;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.up-box .container .sign-up-btn {
+    background: #1abc9c;
+    border: none;
+    border-radius: 20px;
+}
+
+.up-box .container .sign-up-btn :hover,
+.up-box .container .sign-up-btn :focus,
+.up-box .container .sign-up-btn :active {
+    background: #179C82;
+    border: 1px solid #1abc9c;
+}
+
+.text-input {
+    background: rgba(255, 255, 255, 0.5);
+    margin-top: 5px;
+}
+
+.text-input :focus,
+.text-input :active {
+    background: #ffffff;
+}
+
+.down-box {
+    min-height: 80px;
+    width: 100%;
+    position: relative;
+}
+
+.down-box .copyright {
+    width: 100%;
+    color: gray;
+    font-size: 10px;
+    line-height: 80px;
+    text-align: center;
+    margin: auto;
+    bottom: 0px;
+}

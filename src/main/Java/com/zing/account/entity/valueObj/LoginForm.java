@@ -11,18 +11,17 @@ import java.util.regex.Pattern;
  * Created by zing on 2017/3/15.
  */
 public class LoginForm {
-    private String accountName;
+    private String accountPhone;
     private String passcode;
 
     private String captcha;
-    private String token;
 
-    public String getAccountName() {
-        return accountName;
+    public String getAccountPhone() {
+        return accountPhone;
     }
 
-    public void setAccountName(String accountName) {
-        this.accountName = accountName;
+    public void setAccountPhone(String accountPhone) {
+        this.accountPhone = accountPhone;
     }
 
     public String getCaptcha() {
@@ -42,33 +41,23 @@ public class LoginForm {
     }
 
 
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
     public String checkAllLoginData(HttpSession session) {
         String msg;
         msg = checkCaptcha(session);
         if (StringUtils.isEmpty(msg)) {
-            msg = checkLoginNamePasscodeAndToken();
+            msg = checkLoginNameAndPasscode();
         }
         return msg;
     }
 
-    private String checkLoginNamePasscodeAndToken() {
-        if (!Pattern.matches("(W|N){6,}", accountName)) {
+    private String checkLoginNameAndPasscode() {
+        if (!Pattern.matches("(W|N){6,}", accountPhone)) {
             return "用户不存在！";
         } else if (!(Pattern.matches("[0-9]+", passcode)
                 && Pattern.matches("[a-z]+", passcode)
                 && Pattern.matches("[A-Z]+", passcode)
         )) {
             return "密码不正确！";
-        }else if(StringUtils.isEmpty(token)){
-            return "页面已超时！";
         } else {
             return null;
         }
